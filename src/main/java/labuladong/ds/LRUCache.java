@@ -3,7 +3,8 @@ package labuladong.ds;
 import java.util.HashMap;
 
 /**
- * LRU 的全称是 Least Recently Used，也就是说我们认为最近使用过的数据应该是是「有用的」，很久都没用过的数据应该是无用的，内存满了就优先删那些很久没用过的数据。
+ * LRU 的全称是 Least Recently Used，也就是说我们认为最近使用过的数据应该是是「有用的」，很久都没用过的数据应该是无用的，
+ * 内存满了就优先删那些很久没用过的数据。
  *
  * 函数 get 和 put 必须以 O(1) 的平均时间复杂度运行
  * @author wheat
