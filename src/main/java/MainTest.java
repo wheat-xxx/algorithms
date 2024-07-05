@@ -1,3 +1,6 @@
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Scanner;
 
 /**
@@ -9,8 +12,7 @@ import java.util.Scanner;
 public class MainTest {
 
     public static void main(String[] args) {
-        String str = "*\\s*\\t*";
-        System.out.println(str);
+
     }
 
 }

@@ -16,7 +16,6 @@ public class Solution_53 {
      * @param nums
      * @return
      */
-
     public int maxSubArray(int[] nums) {
         // 利用一个数组保存子问题的解
         int[] res = new int[nums.length];
