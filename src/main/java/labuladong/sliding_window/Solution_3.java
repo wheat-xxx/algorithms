@@ -1,5 +1,9 @@
 package labuladong.sliding_window;
 
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+
 /**
  * 给定一个字符串 s ，请你找出其中不含有重复字符的 最长子串的长度
  * @author wheat
@@ -33,6 +37,34 @@ public class Solution_3 {
             }
         }
         System.out.println(s.substring(left, right));
+        return res;
+    }
+
+    /**
+     * map：由于窗口内的元素最多有一个，set可以替代map
+     * @param s
+     * @return
+     */
+    public int lengthOfLongestSubstring_2(String s) {
+        if (s == null || s.length() == 0) return 0;
+
+        Set<Character> window = new HashSet<>();
+        int left = 0;
+        int res = 0;
+        for (int right = 0; right < s.length(); right++) {
+            char ch = s.charAt(right);
+            if (!window.contains(ch)) {
+                window.add(ch);
+                continue;
+            }
+
+            res = Math.max(res, right - left);
+            while (left < right && window.contains(ch)) {
+                window.remove(s.charAt(left++));
+            }
+            window.add(ch);
+        }
+        res = Math.max(res, s.length() - left);
         return res;
     }
 

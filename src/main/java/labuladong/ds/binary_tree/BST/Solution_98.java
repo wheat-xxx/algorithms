@@ -9,35 +9,39 @@ import data_structure.TreeNode;
  */
 public class Solution_98 {
 
-//    /**
-//     * 分解问题的思路
-//     * 递归函数的定义：
-//     *
-//     * 思路错误：不能判断左子树中的所有值是否小于根节点
-//     * @param root
-//     * @return
-//     */
-//    public boolean isValidBST(TreeNode root) {
-//        if (root == null) return true;
-//
-//        boolean left = isValidBST(root.left);
-//        boolean right = isValidBST(root.right);
-//
-//        // 后序遍历位置
-//        boolean res = true;
-//        if (root.left != null) {
-//            res = res && root.left.val < root.val;
-//        }
-//        if (root.right != null) {
-//            res = res && root.val < root.right.val;
-//        }
-//        return res && left && right;
-//    }
+    /**
+     * 分解问题的思路
+     * 递归函数的定义：
+     *
+     * 思路错误：不能判断左子树中的所有值是否小于根节点
+     * @param root
+     * @return
+     */
+    public boolean isValidBST(TreeNode root) {
+        if (root == null) return true;
+
+        boolean left = isValidBST(root.left);
+        boolean right = isValidBST(root.right);
+
+        // 后序遍历位置
+        boolean res = true;
+        if (root.left != null) {
+            res = res && root.left.val < root.val;
+        }
+        if (root.right != null) {
+            res = res && root.val < root.right.val;
+        }
+        return res && left && right;
+    }
+
+    /*
+     * -----------------------------------------------------------------------------------------------------------------
+     */
 
     /**
      * 中序遍历的前一个元素
      */
-    private long pre = Long.MIN_VALUE;
+    private long pre = Integer.MIN_VALUE - 1L;
 
     /**
      * 分解问题思路
@@ -45,7 +49,7 @@ public class Solution_98 {
      * @param root
      * @return
      */
-    public boolean isValidBST(TreeNode root) {
+    public boolean isValidBST_2(TreeNode root) {
         // base case
         if (root == null) return true;
 

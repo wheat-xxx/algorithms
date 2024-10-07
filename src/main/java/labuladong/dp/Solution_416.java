@@ -1,5 +1,7 @@
 package labuladong.dp;
 
+import java.util.Arrays;
+
 /**
  * 给你一个 只包含正整数 的 非空 数组 nums 。请你判断是否可以将这个数组分割成两个子集，使得两个子集的元素和相等。
  *
@@ -17,14 +19,17 @@ public class Solution_416 {
      */
     public boolean canPartition(int[] nums) {
         int sum = 0;
-        for (int i = 0; i < nums.length; i++) {
-            sum += nums[i];
-        }
+        sum = Arrays.stream(nums).sum();
 
         if (sum % 2 != 0) return false;
 
-        return dp(nums, nums.length - 1, sum / 2);
+        int target = sum / 2;
+        memo = new byte[nums.length][target + 1];
+
+        return dp(nums, nums.length - 1, target);
     }
+
+    private byte[][] memo;
 
     /**
      * target = 总和的一半
@@ -38,23 +43,28 @@ public class Solution_416 {
      */
     private boolean dp(int[] nums, int index, int target) {
         // base case
-        if (index == -1 && target != 0) {
-            return false;
-        }
         if (target == 0) {
             return true;
         }
         if (target < 0) {
             return false;
         }
+        if (index < 0) {
+            return false;
+        }
 
+        // memo
+        if (memo[index][target] != 0) return memo[index][target] == 1;
+
+        boolean res = false;
         // 两种选择
         // 加入set1
-        boolean state1 = dp(nums, index - 1, target - nums[index]);
+        res = res || dp(nums, index - 1, target - nums[index]);
         // 不加入set1
-        boolean state2 = dp(nums, index - 1, target);
+        res = res || dp(nums, index - 1, target);
 
-        return state1 || state2;
+        memo[index][target] = res ? (byte)1 : (byte)-1;
+        return res;
     }
 
     /**
@@ -133,6 +143,64 @@ public class Solution_416 {
         }
 
         return dp[target];
+    }
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
+     * 回溯
+     * @param nums
+     * @return
+     */
+    public boolean canPartition_4(int[] nums) {
+        int sum = Arrays.stream(nums).sum();
+        if (sum % 2 != 0) return false;
+
+        int target = sum / 2;
+        backtrack(nums, target, 0);
+        return res;
+    }
+
+    /**
+     * 路径
+     */
+    private int track = 0;
+    private boolean res = false;
+
+    /**
+     * 回溯框架
+     * @param nums
+     * @param target
+     * @param index
+     */
+    private void backtrack(int[] nums, int target, int index) {
+
+        // 找到之后 结束回溯
+        if (res) {
+            return;
+        }
+
+        // base case
+        if (track == target) {
+            res = true;
+        }
+
+        // 剪枝
+        if (track > target) {
+            return;
+        }
+
+        for(int i = index; i < nums.length; i++) {
+            // 做选择
+            track += nums[i];
+            // dfs
+            backtrack(nums, target, i + 1);
+            // 撤销选择
+            track -= nums[i];
+        }
+
     }
 
 }

@@ -71,7 +71,7 @@ public class Solution_105 {
      */
 
     /**
-     * 存储 inorder 中值到索引的映射
+     * 存储 inorder 中值到索引的映射 - 值唯一
      */
     private HashMap<Integer, Integer> valToIndex = new HashMap<>();
 
@@ -102,7 +102,7 @@ public class Solution_105 {
      */
     TreeNode build(int[] preorder, int preStart, int preEnd,
                    int[] inorder, int inStart, int inEnd) {
-
+        // base case
         if (preStart > preEnd) {
             return null;
         }

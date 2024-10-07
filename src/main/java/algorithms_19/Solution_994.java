@@ -44,7 +44,7 @@ public class Solution_994 {
             }
         }
 
-        int count = 0;
+        int res = 0;
         while (!queue.isEmpty()) {
             int size = queue.size();
 
@@ -62,7 +62,7 @@ public class Solution_994 {
             }
 
             if (!queue.isEmpty()) {
-                count++;
+                res++;
             }
         }
 
@@ -77,7 +77,7 @@ public class Solution_994 {
             }
         }
 
-        return flag ? count : -1;
+        return flag ? res : -1;
     }
 
 

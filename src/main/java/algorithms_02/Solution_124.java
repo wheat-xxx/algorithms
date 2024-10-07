@@ -48,6 +48,10 @@ public class Solution_124 {
 //        return Math.max(root.val, root.val + Math.max(left, right));
 //    }
 
+    /*
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
     public int maxPathSum(TreeNode root) {
         traverse(root);
         return res;
@@ -56,7 +60,7 @@ public class Solution_124 {
     private int res = Integer.MIN_VALUE;
 
     /**
-     * 返回以root和树中某个结点为端点的最大路径和
+     * 函数定义：返回以root和树中某个结点为端点的最大路径和
      * @param root
      * @return
      */

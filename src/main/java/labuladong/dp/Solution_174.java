@@ -54,4 +54,52 @@ public class Solution_174 {
         return res;
     }
 
+    /*
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
+     * 自底向上
+     * @param dungeon
+     * @return
+     */
+    public int calculateMinimumHP_2(int[][] dungeon) {
+
+        int m = dungeon.length, n = dungeon[0].length;
+
+        // dp[]
+        int[][] dp = new int[m][n];
+        // 初始化
+        dp[m - 1][n - 1] = dungeon[m - 1][n - 1] >= 0 ? 1 : 1 - dungeon[m - 1][n - 1];
+
+        // 边界值
+        // 最后一行
+        for (int j = n - 2; j >= 0; j--) {
+            int val = dungeon[m - 1][j] - dp[m - 1][j + 1];
+            dp[m - 1][j] = val >= 0 ? 1 : -val;
+        }
+        // 最后一列
+        for (int i = m - 2; i >= 0; i--) {
+            int val = dungeon[i][n - 1] - dp[i + 1][n - 1];
+            dp[i][n - 1] = val >= 0 ? 1 : -val;
+        }
+
+        // 迭代
+        for (int i = m - 2; i >= 0; i--) {
+            for (int j = n - 2; j >= 0; j--) {
+                int val = dungeon[i][j] - Math.min(dp[i + 1][j], dp[i][j + 1]);
+                dp[i][j] = val >= 0 ? 1 : -val;
+            }
+        }
+
+        return dp[0][0];
+    }
+
+    public static void main(String[] args) {
+//        int[][] dungeon = new int[][] {{-2,-3,3},{-5,-10,1},{10,30,-5}};
+        int[][] dungeon = new int[][] {{0,0}};
+        new Solution_174().calculateMinimumHP_2(dungeon);
+    }
+
+
 }

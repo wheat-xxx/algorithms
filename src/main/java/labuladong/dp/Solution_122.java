@@ -49,6 +49,7 @@ public class Solution_122 {
     /**
      * 动态规划解法
      * 如何判断这是一个dp问题？
+     * 每一天有两个状态 每一天有两种选择
      * @param prices
      * @return
      */

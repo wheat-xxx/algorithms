@@ -35,16 +35,10 @@ public class Solution_47 {
         }
 
         // 回溯算法框架
-        int temp = Integer.MIN_VALUE;
         for (int i = 0; i < nums.length; i++) {
             if (used[i]) continue;
 
 //            // 剪枝 避免对同一层相同元素的遍历
-//            if (nums[i] == others) {
-//                continue;
-//            } else {
-//                others = nums[i];
-//            }
 
             // 新添加的剪枝逻辑，固定相同的元素在排列中的相对位置
             // 同一层中相同元素一定未被使用

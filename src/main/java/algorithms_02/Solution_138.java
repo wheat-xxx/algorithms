@@ -9,7 +9,7 @@ import java.util.Map;
  */
 public class Solution_138 {
 
-    public class Node{
+    private class Node{
         int val;
         Node next;
         Node random;

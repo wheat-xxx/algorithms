@@ -53,4 +53,38 @@ public class Solution_459 {
         return false;
     }
 
+    /*
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
+     * 第二次写
+     * note: 从内层循环如何直接跳出外层循环
+     * @param s
+     * @return
+     */
+    public boolean repeatedSubstringPattern_2(String s) {
+        char[] chs = s.toCharArray();
+
+        for (int subLen = 1; subLen <= chs.length / 2; subLen++) {
+            if (chs.length % subLen != 0) {
+                continue;
+            }
+
+            int i = 1;
+            for (i = 1; i < chs.length / subLen; i++) {
+                int j = 0;
+                for (j = 0; j < subLen; j++) {
+                    if (chs[j] != chs[i * subLen + j]) {
+                        break;
+                    }
+                }
+                if (j != subLen) break;
+            }
+            if (i == chs.length / subLen) return true;
+        }
+
+        return false;
+    }
+
 }

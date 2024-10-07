@@ -11,7 +11,7 @@ package labuladong.dp;
  * @author wheat
  * @date 2024/05/17  17:14
  */
-public class Solution_451 {
+public class Solution_651 {
 
     /**
      * 动态规划 迭代解法

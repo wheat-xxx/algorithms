@@ -70,9 +70,9 @@ public class Solution_56 {
 
     @Test
     public void test(){
+
         int[][] intervals = new int[][]{{1,3},{2,6},{8,10},{15,18}};
         int[][] res = merge(intervals);
-
 
     }
 

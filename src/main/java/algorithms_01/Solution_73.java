@@ -1,8 +1,7 @@
 package algorithms_01;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
+import java.util.zip.ZipEntry;
 
 /**
  * Description:
@@ -19,24 +18,51 @@ public class Solution_73 {
      */
     public void setZeroes(int[][] matrix) {
 
-        List<List<Integer>> state = new ArrayList<>();
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[0].length; j++){
+        int m = matrix.length;
+        int n = matrix[0].length;
+        HashSet<Data> set = new HashSet<>();
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
                 if(matrix[i][j] == 0) {
-                    List<Integer> temp = Arrays.asList(i, j);
-                    state.add(temp);
+                    set.add(new Data(i, j));
                 }
             }
         }
 
-        for(int i = 0; i < matrix.length; i++){
-            for(int j = 0; j < matrix[0].length; j++){
-                List<Integer> temp = Arrays.asList(i, j);
-                if(state.contains(temp)){
-                    for(int k = 0; k < matrix.length; k++) matrix[k][j] = 0;
-                    for(int k = 0; k < matrix[i].length; k++) matrix[i][k] = 0;
+        for(int i = 0; i < m; i++){
+            for(int j = 0; j < n; j++){
+                if(set.contains(new Data(i, j))){
+                    for(int k = 0; k < m; k++) matrix[k][j] = 0;
+                    for(int k = 0; k < n; k++) matrix[i][k] = 0;
                 }
             }
+        }
+    }
+
+    private class Data {
+        int i;
+        int j;
+        public Data(int i, int j) {
+            this.i = i;
+            this.j = j;
+        }
+
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+
+            Data data = (Data) o;
+
+            if (i != data.i) return false;
+            return j == data.j;
+        }
+
+        @Override
+        public int hashCode() {
+            int result = i;
+            result = 31 * result + j;
+            return result;
         }
     }
 

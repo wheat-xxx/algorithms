@@ -65,7 +65,7 @@ public class Solution_42 {
         int left = 0, right = height.length - 1;
         int l_max = 0, r_max = 0;
         int res = 0;
-        while (left < right) {
+        while (left < right) {      // 最后剩的一个柱子一定是最高的
             l_max = Math.max(l_max, height[left]);
             r_max = Math.max(r_max, height[right]);
 

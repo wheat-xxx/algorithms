@@ -96,7 +96,7 @@ public class Solution_76 {
             right++;
 
             // TODO: debug 运行成功之后可以注释掉
-            System.out.println(s.substring(left, right));
+            //System.out.println(s.substring(left, right));
 
             // 判断左侧窗口是否要收缩
             while(left < right && valid == tMap.size()) {

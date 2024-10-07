@@ -1,6 +1,7 @@
 package labuladong.ds.stack_queue;
 
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -25,11 +26,11 @@ public class Solution_239 {
      */
     public int[] maxSlidingWindow(int[] nums, int k) {
         // 单调队列
-        MonotonicQueue window = new MonotonicQueue();
+        MonotonicQueue<Integer> window = new MonotonicQueue<>();
         List<Integer> res = new ArrayList<>();
 
         for (int i = 0; i < nums.length; i++) {
-            if (i < k - 1) {
+            if (i < k - 1) {        // 为什么是 k - 1？后续处理统一
                 //先把窗口的前 k - 1 填满
                 window.push(nums[i]);
             } else {
@@ -43,11 +44,37 @@ public class Solution_239 {
             }
         }
         // 将 List 类型转化成 int[] 数组作为返回值
-        int[] arr = new int[res.size()];
-        for (int i = 0; i < res.size(); i++) {
-            arr[i] = res.get(i);
-        }
-        return arr;
+        int[] resArr = res.stream().mapToInt(Integer::intValue).toArray();
+        return resArr;
     }
+
+
+    /**
+     * 单调队列
+     * 队列里面的元素单调递减
+     * @param <T>
+     */
+    private class MonotonicQueue<T extends Comparable<T>> {
+
+        private LinkedList<T> maxq = new LinkedList<>();
+
+        public T max() {
+            return maxq.getFirst();
+        }
+
+        public void pop(T val) {
+            if (val.equals(maxq.getFirst())) {
+                maxq.removeFirst();
+            }
+        }
+
+        public void push(T val) {
+            while (!maxq.isEmpty() && maxq.getLast().compareTo(val) < 0) {
+                maxq.removeLast();
+            }
+            maxq.addLast(val);
+        }
+    }
+    
 
 }

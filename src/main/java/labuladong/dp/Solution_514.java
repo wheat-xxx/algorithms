@@ -20,10 +20,11 @@ public class Solution_514 {
         // 记录圆环上字符到索引的映射
         for (int i = 0; i < m; i++) {
             char c = ring.charAt(i);
-            if (!charToIndex.containsKey(c)) {
-                charToIndex.put(c, new ArrayList<>());
-            }
-            charToIndex.get(c).add(i);
+//            if (!charToIndex.containsKey(c)) {
+//                charToIndex.put(c, new ArrayList<>());
+//            }
+//            charToIndex.get(c).add(i);
+            charToIndex.getOrDefault(c, new ArrayList<>()).add(i);
         }
 
         this.memo = new int[m][n];

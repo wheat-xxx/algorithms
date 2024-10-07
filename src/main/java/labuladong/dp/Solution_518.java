@@ -20,7 +20,7 @@ public class Solution_518 {
      * @return
      */
     public int change(int amount, int[] coins) {
-        this.memo = new int[amount + 1];
+        memo = new int[amount + 1];
         Arrays.fill(this.memo, -1);
         return dp(coins, amount);
     }
@@ -44,14 +44,14 @@ public class Solution_518 {
         }
 
         // memo
-        if (this.memo[amount] != -1) return this.memo[amount];
+        if (memo[amount] != -1) return memo[amount];
 
         int res = 0;
         for (int coin : coins) {
             res += dp(coins, amount - coin);
         }
 
-        this.memo[amount] = res;
+        memo[amount] = res;
         return res;
     }
 
@@ -112,6 +112,34 @@ public class Solution_518 {
         }
 
         return dp[amount];
+    }
+
+    /*
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
+     * 自底向上 有重复解
+     * @param amount
+     * @param coins
+     * @return
+     */
+    public int change_4(int amount, int[] coins) {
+        int[] dp = new int[amount + 1];
+        dp[0] = 1;
+        for(int i = 1; i < dp.length; i++) {
+            for(int coin : coins) {
+                if (i - coin >= 0) {
+                    dp[i] += dp[i - coin];
+                }
+            }
+        }
+
+        return dp[amount];
+    }
+
+    public static void main(String[] args) {
+        new Solution_518().change_4(5, new int[]{1,2,5});
     }
 
 }

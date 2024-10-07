@@ -59,7 +59,7 @@ public class Solution_86 {
         while(p != null) {
             ListNode temp = p;
             p = p.next;
-            temp.next = null;
+            temp.next = null;  // 注意
             if(temp.val < x) {
                 p1.next = temp;
                 p1 = p1.next;

@@ -28,4 +28,35 @@ public class Solution_189 {
         }
     }
 
+    /*
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
+     * 翻转数组解决
+     * @param nums
+     * @param k
+     */
+    public void rotate_2(int[] nums, int k) {
+        // 边界
+        if (nums == null || nums.length < 2 || k == 0) {
+            return;
+        }
+
+        k = k % nums.length;
+
+        reverse(nums, 0, nums.length - 1);
+        reverse(nums, 0, k - 1);
+        reverse(nums, k, nums.length - 1);
+    }
+
+    private void reverse(int[] nums, int i, int j) {
+        while (i < j) {
+            int temp = nums[i];
+            nums[i] = nums[j];
+            nums[j] = temp;
+            i++;j--;
+        }
+    }
+
 }

@@ -25,15 +25,15 @@ public class Solution_230 {
     // 记录结果
     private int res = 0;
     // 记录当前元素的排名
-    private int rank = 0;
+    private int count = 0;
     private void traverse(TreeNode root, int k) {
         if (root == null) {
             return;
         }
         traverse(root.left, k);
         /* 中序遍历代码位置 */
-        rank++;
-        if (k == rank) {
+        count++;
+        if (count == k) {
             // 找到第 k 小的元素
             res = root.val;
             return;

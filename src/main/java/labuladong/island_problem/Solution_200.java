@@ -63,4 +63,17 @@ public class Solution_200 {
         dfs(grid, i, j + 1, visited);   // 右
     }
 
+    /*
+     * -----------------------------------------------------------------------------------------------------------------
+     */
+
+    /**
+     * bfs解法 - Queue
+     * @param grid
+     * @return
+     */
+    public int numIslands_2(char[][] grid) {
+        return -1;
+    }
+
 }

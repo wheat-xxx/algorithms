@@ -36,17 +36,20 @@ public class Solution_437 {
 
     /**
      * 检测以 root 为起始节点且向下延深的路径有多少种
+     * 递归函数定义：
      * @param root
      * @param targetSum
      * @return
      */
     private int rootSum(TreeNode root, long targetSum) {
+        // base case
         if (root == null) return 0;
 
         int res = 0;
         if (targetSum == root.val) res += 1;
         res += rootSum(root.left, targetSum - root.val);
         res += rootSum(root.right, targetSum - root.val);
+
         return res;
     }
 

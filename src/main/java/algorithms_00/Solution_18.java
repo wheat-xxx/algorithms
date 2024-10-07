@@ -7,8 +7,7 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * Description:
- *      四数之和转为三数之和的问题
+ * 四数之和转为三数之和的问题
  *
  * @author wheat
  * @date 2023/02/23  15:52
@@ -16,7 +15,7 @@ import java.util.List;
 public class Solution_18 {
 
     @Test
-    public void test(){
+    public void test() {
         int[] nums = {1,0,-1,0,-2,2};
         fourSum(nums, 0);
     }
@@ -24,16 +23,19 @@ public class Solution_18 {
 
     public List<List<Integer>> fourSum(int[] nums, int target) {
 
-        List<List<Integer>> resList = new ArrayList<>();
+        List<List<Integer>> res = new ArrayList<>();
 
         // 边界条件
         if(nums == null || nums.length < 4){
-            return resList;
+            return res;
         }
 
         Arrays.sort(nums);
 
         for(int i = 0; i < nums.length - 3; i++){
+
+            // 剪枝
+            if (nums[i] > 0) break;
 
             // 去除重复解
             if(i > 0 && nums[i] == nums[i-1]){
@@ -43,7 +45,7 @@ public class Solution_18 {
             for(int j = i + 1; j < nums.length - 2; j++){
 
                 // 去除重复解
-                if(j > i+1 && nums[j] == nums[j-1]){
+                if(j > i + 1 && nums[j] == nums[j-1]){
                     continue;
                 }
 
@@ -56,7 +58,7 @@ public class Solution_18 {
 
                         // 保存结果
                         List<Integer> elem = Arrays.asList(nums[i], nums[j], nums[k], nums[l]);
-                        resList.add(elem);
+                        res.add(elem);
 
                         // 更新指针
                         k++; l--;
@@ -72,7 +74,7 @@ public class Solution_18 {
             }
         }
 
-        return resList;
+        return res;
 
     }
 

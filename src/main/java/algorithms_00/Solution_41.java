@@ -1,5 +1,9 @@
 package algorithms_00;
 
+import org.junit.Test;
+
+import java.awt.*;
+
 /**
  * Description:
  *
@@ -14,7 +18,7 @@ public class Solution_41 {
         if(nums == null || nums.length == 0) return 1;
 
         for(int i = 0; i < nums.length; i++){
-            while(nums[i] > 0 && nums[i] <= nums.length && nums[nums[i] - 1] != nums[i]){
+            if (nums[i] > 0 && nums[i] <= nums.length && nums[nums[i] - 1] != nums[i]){
                 swap(nums, nums[i] - 1, i);
             }
         }
@@ -32,6 +36,11 @@ public class Solution_41 {
         int temp = nums[index1];
         nums[index1] = nums[index2];
         nums[index2] = temp;
+    }
+
+    @Test
+    public void test() {
+        firstMissingPositive(new int[] {3,4,-1,1});
     }
 
 }

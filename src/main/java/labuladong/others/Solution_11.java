@@ -38,10 +38,8 @@ public class Solution_11 {
         int i = 0, j = height.length - 1;
         int res = 0;
         while (i < j) {
-            int cur = (j - i) * Math.min(height[i], height[j]);
-            if (res < cur) {
-                res = cur;
-            }
+            int curArea = (j - i) * Math.min(height[i], height[j]);
+            res = Math.max(res, curArea);
             // 更新i, j
             if (height[i] < height[j]) {
                 i++;

@@ -1,7 +1,6 @@
 package algorithms_02;
 
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 最长连续数列
@@ -11,23 +10,23 @@ import java.util.Set;
 public class Solution_128 {
 
     public int longestConsecutive(int[] nums) {
-        Set<Integer> numSet = new HashSet<>();
+        Set<Integer> set = new HashSet<>();
         for(int num : nums) {
-            numSet.add(num);
+            set.add(num);
         }
-        int longestStreak = 0;
-        for(int num : numSet) {
-            if(!numSet.contains(num - 1)) {
-                int currentNum = num;
-                int currentStreak = 1;
-                while(numSet.contains(currentNum + 1)) {
-                    currentNum++;
-                    currentStreak++;
-                }
-                longestStreak = Math.max(longestStreak, currentStreak);
-            }
+
+        int longestConsecutive = 0;
+        for(int num : set) {
+            // 不是序列最小值跳过
+            if (set.contains(num - 1)) continue;
+
+            int currentConsecutive = 0;
+            while(set.contains(num++)) currentConsecutive++;
+
+            longestConsecutive = Math.max(longestConsecutive, currentConsecutive);
         }
-        return longestStreak;
+
+        return longestConsecutive;
     }
 
 }

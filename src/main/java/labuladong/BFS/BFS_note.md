@@ -32,11 +32,8 @@ int BFS(Node start, Node target) {
 }
 ~~~
 
----
-
 # BFS面对的问题场景？
 
 在一副图中找从start到target的最短距离；
 
----
 
