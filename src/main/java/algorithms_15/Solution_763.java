@@ -20,13 +20,11 @@ public class Solution_763 {
      */
     public List<Integer> partitionLabels(String s) {
         List<Integer> res = new ArrayList<>();
-        // 剩余字符及其个数
+
+        // 统计字符个数
         HashMap<Character, Integer> map = new HashMap<>();
         for (char ch : s.toCharArray()) {
-            if (!map.containsKey(ch)) {
-                map.put(ch, 0);
-            }
-            map.put(ch, map.get(ch) + 1);
+            map.put(ch, map.getOrDefault(ch, 0) + 1);
         }
 
         int index = 0;

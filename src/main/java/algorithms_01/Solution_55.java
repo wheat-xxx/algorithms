@@ -11,13 +11,14 @@ package algorithms_01;
 public class Solution_55 {
 
     public boolean canJump(int[] nums) {
-        int border = 0;
-        int max_position = 0;
-        for(int i = 0; i < nums.length && i <= max_position; i++){
-            if(i + nums[i] > max_position) max_position = i + nums[i];
+        int maxPosition = 0;
+        for (int i = 0; i < nums.length; i++) {
+            if (i > maxPosition) return false;
+            if (maxPosition >= nums.length - 1) return true;
+            maxPosition = Math.max(maxPosition, i + nums[i]);
         }
-        if(max_position >= nums.length - 1) return true;
-        else return false;
+
+        return true;
     }
 
 }
