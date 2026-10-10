@@ -18,13 +18,11 @@ public class Solution_209 {
         int leftIndex = 0, rightIndex = 0;
         int sum = 0;
         int result = nums.length + 1;
-        while(rightIndex < nums.length) {
+        while (rightIndex < nums.length) {
             sum += nums[rightIndex];
-            if(sum >= target) {
-                while(sum >= target) {
-                    result = result < (rightIndex - leftIndex + 1) ? result : (rightIndex - leftIndex + 1);
-                    sum -= nums[leftIndex++];
-                }
+            while (leftIndex <= rightIndex && sum >= target) {
+                result = Math.min(result, rightIndex - leftIndex + 1);
+                sum -= nums[leftIndex++];
             }
             rightIndex++;
         }
