@@ -81,7 +81,7 @@ public class MyCalculator {
             if (Character.isDigit(ch)) {
                 num = num * 10 + (ch - '0');
             }
-            if (!Character.isDigit(ch) || i == s.length()) {
+            if (!Character.isDigit(ch) || i == s.length() - 1) {
                 int pre;
                 switch (sign) {
                     case '+':

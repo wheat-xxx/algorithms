@@ -13,7 +13,7 @@ import java.util.LinkedList;
 public class Solution_71 {
 
     public String simplifyPath(String path) {
-        Deque<String> stack = new ArrayDeque<>();
+        Deque<String> stack = new LinkedList<>();
 
         // 一个或多个 / 作为分隔符
         String[] parts = path.split("/+");

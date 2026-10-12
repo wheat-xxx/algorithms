@@ -11,26 +11,7 @@ public class Main {
         Main mainInstance = new Main();
     }
 
-    public String simplifyPath(String path) {
-        Deque<String> stack = new ArrayDeque<>();
 
-        // 一个或多个 / 作为分隔符
-        String[] parts = path.split("/+");
-
-        for (String part : parts) {
-            if (part.isEmpty() || part.equals(".")) {
-                continue;
-            } else if (part.equals("..")) {
-                if (!stack.isEmpty()) {
-                    stack.pollLast();
-                }
-            } else {
-                stack.offerLast(part);
-            }
-        }
-
-        return "/" + String.join("/", stack);
-    }
 
 
 }
