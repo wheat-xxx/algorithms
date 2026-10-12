@@ -19,52 +19,29 @@ import java.util.List;
 public class Solution_56 {
 
     public int[][] merge(int[][] intervals) {
-        List<int[]> res = new ArrayList<int[]>();
-
-        // 对区间的起始值进行排序 减少后续遍历时间
-        sort(intervals);
-
-        // 合并操作
-        int i = 0, j;
-        int[] temp = new int[2];
-        while(i < intervals.length){
-            temp[0] = intervals[i][0];
-            temp[1] = intervals[i][1];
-            j = i + 1;
-            // 进行合并操作
-            while(j < intervals.length){
-                // 满足合并操作
-                if(intervals[j][0] <= temp[1]) {
-                    if(intervals[j][1] > temp[1]){
-                        temp[1] = intervals[j][1];
-                    }
-                    j++;
-                }else{
-                    break;
-                }
-            }
-            res.add(new int[]{temp[0], temp[1]});
-            // 外层while更新
-            i = j;
-        }
-
-
-        //return (int[][])(res.toArray());
-        int[][] res_arr = new int[res.size()][];
-        for(int k = 0; k < res.size();k++){
-            res_arr[k] = res.get(k);
-        }
-        return res_arr;
-    }
-
-    public void sort(int[][] arr){
-        Arrays.sort(arr, new Comparator<int[]>() {
-            @Override
-            public int compare(int[] o1, int[] o2) {
-                if(o1[0] - o2[0] == 0) return o1[1] - o2[1];
-                else return o1[0] - o2[0];
-            }
+        // 排序
+        Arrays.sort(intervals, (interval1, interval2) -> {
+            return interval1[0] - interval2[0];
         });
+
+        List<int[]> retVal = new ArrayList<>();
+
+        int[] curWindow = new int[] {intervals[0][0], intervals[0][1]};
+        for (int[] interval : intervals) {
+            // 满足合并条件
+            if (interval[0] > curWindow[1]) {
+                retVal.add(Arrays.copyOf(curWindow, curWindow.length));
+                curWindow[0] = interval[0];
+                curWindow[1] = interval[1];
+            } else {
+                curWindow[1] = Math.max(curWindow[1], interval[1]);
+            }
+        }
+
+        // 添加最后一个
+        retVal.add(Arrays.copyOf(curWindow, curWindow.length));
+
+        return retVal.toArray(new int[0][]);
     }
 
 

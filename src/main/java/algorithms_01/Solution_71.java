@@ -1,5 +1,6 @@
 package algorithms_01;
 
+import java.util.ArrayDeque;
 import java.util.Deque;
 import java.util.LinkedList;
 
@@ -11,19 +12,25 @@ import java.util.LinkedList;
  */
 public class Solution_71 {
 
-    public String simplifyPath(String path){
-        Deque<String> stack = new LinkedList<>();
+    public String simplifyPath(String path) {
+        Deque<String> stack = new ArrayDeque<>();
 
-        for(String item : path.split("/")){
-            if("..".equals(item)){
-                if(!stack.isEmpty()) stack.pop();
-            }else if(!".".equals(item)){
-                stack.push(item);
+        // 一个或多个 / 作为分隔符
+        String[] parts = path.split("/+");
+
+        for (String part : parts) {
+            if (part.isEmpty() || part.equals(".")) {
+                continue;
+            } else if (part.equals("..")) {
+                if (!stack.isEmpty()) {
+                    stack.pollLast();
+                }
+            } else {
+                stack.offerLast(part);
             }
         }
-        String res = "";
-        for(String item : stack) res = "/" + item + res;
-        return res.isEmpty() ? "/" : res;
-     }
+
+        return "/" + String.join("/", stack);
+    }
 
 }
