@@ -1,4 +1,4 @@
-import java.util.*;
+import java.util.LinkedList;
 
 /**
  *
@@ -8,7 +8,6 @@ import java.util.*;
 public class Main {
 
     public static void main(String[] args) {
-        Main mainInstance = new Main();
     }
 
 
