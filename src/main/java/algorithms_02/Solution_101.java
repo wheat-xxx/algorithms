@@ -1,9 +1,6 @@
 package algorithms_02;
 
 import data_structure.TreeNode;
-import org.junit.Test;
-
-import java.sql.Array;
 import java.util.*;
 
 /**
@@ -15,42 +12,12 @@ import java.util.*;
 public class Solution_101 {
 
     /**
-     * 错误：不仅是左右子节点对称，而是左右子树对称
-     * @param root
-     * @return
-     */
-    public boolean isSymmetric_1(TreeNode root) {
-
-        return traverse(root);
-
-    }
-
-    public boolean traverse(TreeNode root){
-        if(root != null){
-            if(root.left != null && root.right != null){
-                if(root.left.val == root.right.val) return traverse(root.left) && traverse(root.right);
-                else return false;
-            }else if(root.left == null && root.right == null){
-                return true;
-            }else{
-                return false;
-            }
-        }else {
-            return true;
-        }
-    }
-
-    /*
-     * -----------------------------------------------------------------------------------------------------------------
-     */
-
-    /**
      * 中序遍历解法
      * 错误：root = [5,4,1,null,1,null,4,2,null,2,null]
      * @param root
      * @return
      */
-    public boolean isSymmetric_2(TreeNode root){
+    public boolean isSymmetric_1(TreeNode root){
 
         List<Integer> res = new ArrayList<Integer>();
 
@@ -95,30 +62,26 @@ public class Solution_101 {
      */
 
     /**
-     * 递归解法：
+     * 分解问题思路
+     *
      * @param root
      * @return
      */
-    public boolean isSymmetric_3(TreeNode root){
-        if(root == null){
-            return true;
-        }
+    public boolean isSymmetric_2(TreeNode root) {
+        if (root == null) return true;
 
-        return dfs(root.right, root.left);
+        return helper(root.left, root.right);
     }
 
-    public boolean dfs(TreeNode left, TreeNode right){
-        if(left == null && right == null){
-            return true;
-        }else if(left != null && right != null){
-            if(left.val == right.val){
-                return dfs(left.left, right.right) && dfs(left.right, right.left);
-            }else{
-                return false;
-            }
-        }else{
-            return false;
-        }
+    private boolean helper(TreeNode p, TreeNode q) {
+        if (p == null && q == null) return true;
+
+        if (p == null || q == null) return false;
+
+        boolean cur = p.val == q.val;
+        boolean flag1 = helper(p.left, q.right);
+        boolean flag2 = helper(p.right, q.left);
+        return cur && flag1 && flag2;
     }
 
     /*
@@ -130,7 +93,7 @@ public class Solution_101 {
      * @param root
      * @return
      */
-    public boolean isSymmetric_4(TreeNode root){
+    public boolean isSymmetric_3(TreeNode root){
         if(root == null) return true;
 
         Queue<TreeNode> queue = new LinkedList<TreeNode>();
