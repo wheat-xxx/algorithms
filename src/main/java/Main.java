@@ -1,7 +1,4 @@
-import data_structure.TreeNode;
-
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 
 /**
  *
@@ -15,8 +12,5 @@ public class Main {
 
 
     }
-
-
-
 }
 
