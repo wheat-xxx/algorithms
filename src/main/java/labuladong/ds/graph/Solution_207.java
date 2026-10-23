@@ -135,7 +135,7 @@ public class Solution_207 {
             return;
         }
 
-        // 每个节点只能被遍历一次 要不然会超时
+        // 每个节点只需被遍历一次
         if (visited[s]) return;
         // 将节点 s 标记为已遍历
         visited[s] = true;
