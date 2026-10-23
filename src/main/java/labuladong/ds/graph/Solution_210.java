@@ -66,7 +66,7 @@ public class Solution_210 {
 
     /**
      * 图的dfs遍历
-     * 每个节点只能被遍历一次 要不然会超时
+     * 每个节点只需被遍历一次
      * @param graph
      * @param s
      */
@@ -78,7 +78,7 @@ public class Solution_210 {
             return;
         }
 
-        // 每个节点只能被遍历一次 要不然会超时
+        // 每个节点只需被遍历一次
         if (visited[s]) return;
         // 前序遍历位置
         // 将节点 s 标记为已遍历
