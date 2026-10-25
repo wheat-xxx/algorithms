@@ -49,6 +49,26 @@ public class Knapsack {
 
     }
 
+    public int knapsack_2(int W, int N, int[] wt, int[] val) {
+        // dp数组
+        int[][] dp = new int[W + 1][N + 1];
+
+        // 重量
+        for (int w = 1; w <= W; w++) {
+            // 物品
+            for (int i = 1; i <= N; i++) {
+                // 当前物品超出背包限制
+                if (w - wt[i - 1] < 0) {
+                    dp[w][i] = dp[w][i - 1];
+                } else {
+                    dp[w][i] = Math.max(dp[w][i - 1], dp[w - wt[i - 1]][i - 1] + val[i - 1]);
+                }
+            }
+        }
+
+        return dp[W][N];
+    }
+
     /*
      * -----------------------------------------------------------------------------------------------------------------
      */
@@ -61,10 +81,10 @@ public class Knapsack {
      * @param val
      * @return
      */
-    public int knapsack_2(int W, int N, int[] wt, int[] val) {
+    public int knapsack_3(int W, int N, int[] wt, int[] val) {
         this.wt = wt;
         this.val =val;
-        return dp(W, N, W, N);
+        return dp(W, N);
     }
 
     private int[] wt;
@@ -73,13 +93,11 @@ public class Knapsack {
 
     /**
      * dp函数定义：背包重量为w，物品数量为n的情况下，最大价值
-     * @param W
-     * @param N
      * @param w
      * @param n
      * @return
      */
-    private int dp(int W, int N, int w, int n) {
+    private int dp(int w, int n) {
         // base case
         if (w < 0 || n < 0) {
             return Integer.MIN_VALUE;
@@ -91,9 +109,9 @@ public class Knapsack {
         int res = 0;
         // 两种选择
         // 不选择物品 n
-        res = Math.max(res, dp(W, N, w, n - 1));
+        res = Math.max(res, dp(w, n - 1));
         // 选择当前物品
-        res = Math.max(res, dp(W, N, w - wt[n - 1], n - 1));
+        res = Math.max(res, dp(w - wt[n - 1], n - 1) + val[n - 1]);
 
         return res;
     }
